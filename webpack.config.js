@@ -1,22 +1,25 @@
-const path = require('path')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
-const WasmPackPlugin = require('@wasm-tool/wasm-pack-plugin')
+const path = require("path");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
 
 module.exports = {
-  entry: './public/main.js',
+  entry: "./public/main.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js'
+    path: path.resolve(__dirname, "dist"),
+    filename: "index.js",
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: './public/index.html'
+      template: "./public/index.html",
     }),
     new WasmPackPlugin({
-      crateDirectory: path.resolve(__dirname, '.')
-    })
+      crateDirectory: path.resolve(__dirname, "."),
+    }),
   ],
   experiments: {
-    asyncWebAssembly: true
-  }
-}
+    asyncWebAssembly: true,
+  },
+  performance: {
+    hints: false,
+  },
+};
